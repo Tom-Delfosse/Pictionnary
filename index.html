@@ -18,6 +18,16 @@
 <body>
     <h1>Howdy World</h1>
     <ul class="users"></ul>
+    <form action="">
+        <label>
+            Color : <input type="color" class="color">
+
+        </label>
+        Épaisseur : <input type="range" min="1" max="50" class="weight">
+        <label>
+
+        </label>
+    </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -28,7 +38,10 @@
         socket.emit('username', username);
 
         let canDraw = false;
-        const usersList = document.querySelector(".users")
+        const usersList = document.querySelector(".users");
+        const colorInput = document.querySelector(".color");
+        const weightInput = document.querySelector('.weight');
+
 
         socket.on('users', (data) => {
             usersList.innerHTML = '';
@@ -53,17 +66,23 @@
 
         function mouseDragged (){
             if (!canDraw) return; 
+            stroke(colorInput.value)
+            strokeWeight(weightInput.value);
             line(mouseX, mouseY, pmouseX, pmouseY);
             socket.emit('line', {
                 mouseX, 
                 mouseY,
                 pmouseY,
-                pmouseX
+                pmouseX,
+                color : colorInput.value,
+                weight : weightInput.value
             })
         }
 
         socket.on('line', (data) =>{
-            line( data.mouseX, data.mouseY, data.pmouseX, data.pmouseY);
+            stroke(data.color)
+            strokeWeight(data.weight);;
+            line( data.mouseX, data.mouseY, data.pmouseX, data.pmouseY)
         })
 
         socket.on('word', (nextWord) =>{
