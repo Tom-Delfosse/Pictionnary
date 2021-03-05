@@ -65,6 +65,14 @@
         socket.on('line', (data) =>{
             line( data.mouseX, data.mouseY, data.pmouseX, data.pmouseY);
         })
+
+        socket.on('word', (nextWord) =>{
+            alert(`tu dois dessiner ${nextWord}`)
+        })
+
+        socket.on('clear', () => {
+            clear();
+        })
     </script>
 </body>
 </html>

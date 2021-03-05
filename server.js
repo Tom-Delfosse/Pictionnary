@@ -17,6 +17,7 @@ const io = socketIO(server);
 let users = [];
 let currentPlayer = null;
 let timeout = null;
+const words = ['Dark Vador', 'Kylo Ren', 'Palpatine', 'Obi-Wan Kenobi', 'Anakin Skywalker', 'Rey Palpatine'];
 io.on('connection', (socket) =>{
     socket.on('username', (username ) => {
         console.log(`${username} joined the game.`);
@@ -59,4 +60,9 @@ function switchPlayer() {
     currentPlayer = users[(indexCurrentPlayer + 1) % users.length]
 
     sendUsers();
+
+    const nextWord = words[Math.floor(Math.random() * words.length)]
+    currentPlayer.emit('word', nextWord)
+
+    io.emit('clear');
 }
