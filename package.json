@@ -1,0 +1,26 @@
+{
+  "name": "Pictionnary",
+  "version": "0.0.1",
+  "description": "Exercice for school",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": " run build",
+    "start": "run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom-Delfosse/Pictionnary.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tom-Delfosse/Pictionnary/issues"
+  },
+  "homepage": "https://github.com/Tom-Delfosse/Pictionnary#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.2"
+  }
+}
